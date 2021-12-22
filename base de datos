@@ -1,0 +1,47 @@
+create database sendero_de_luz
+
+use sendero_de_luz;
+
+create table if not exists UserType(
+id int not null primary key auto_increment,
+nombre varchar(150) null,
+descripcion varchar(150) null,
+created_at timestamp null default null,
+updated_at timestamp null default null,
+deleted_at timestamp null default null
+)
+engine = InnoDB;
+
+----------------
+----------------
+create table if not exists password_resets(
+correo varchar(191) not null,
+token varchar(191) not null,
+created_at timestamp null default null,
+index password_resets_correo_index (correo asc))
+engine = InnoDB;
+
+create table if not exists users
+(
+id int not null auto_increment primary key,
+name varchar(25) not null,
+email varchar(50) not null,
+email_verified_at datetime null default null,
+password varchar(8) not null,
+remember_token varchar(191) null default null,
+idusertype int(10) null default null,
+created_at timestamp null default null,
+updated_at timestamp null default null,
+deleted_at timestamp null default null,
+unique index users_email_unique (email asc),
+
+constraint idusertype
+foreign key (idusertype)
+references UserType(id)
+
+on delete cascade
+on update cascade
+)
+ENGINE = InnoDB
+default character set = utf8mb4
+collate = utf8mb4_unicode_ci;
