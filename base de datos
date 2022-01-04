@@ -45,3 +45,77 @@ on update cascade
 ENGINE = InnoDB
 default character set = utf8mb4
 collate = utf8mb4_unicode_ci;
+---------------------------------------
+---------------------------------------
+create table if not exists estudiante
+(
+id int not null auto_increment primary key,
+primernombre varchar(20),
+segundonombre varchar(20),
+primerapellido varchar(20),
+segundoapellido varchar(20),
+edad int,
+sexo varcharacter(1),
+telefono varchar(9),
+fecNac datetime,
+codigoEst varchar(15),
+tutor varchar(20),
+dirreccion varchar(102),
+created_at timestamp null default null,
+updated_at timestamp null default null,
+deleted_at timestamp null default null
+) 
+engine = Innebd;
+---------------------------------------
+--------------------------------------
+create table if not exists tutor
+(
+idtutor int auto_increment primary key,
+NombApellMama varchar(109),
+cedulamama varchar(15),
+telefono1m varchar(9),
+telefono2m varchar(9),
+lugartrabajom varchar(102),
+opucapacionmama varchar(50),
+NombApellPapa varchar(109),
+cedulapapa varchar(15),
+telefono1p varchar(9),
+telefono2p varchar(9),
+lugartrabajop varchar(102),
+ocupacionp varchar(50),
+nombretutor varchar(109),
+cedulat varchar(15),
+telefono1t varchar(9),
+telefono2t varchar(9),
+lugartrabajot varchar(102),
+ocupaciont varchar(50),
+
+constraint nombretutor
+foreign key (codigoEst)
+references estudiante(codigoEst) 
+)
+engine = InnoDB;
+-----------------------------
+-----------------------------
+create table if not exists modalidad
+(
+idmodalidad int auto_increment primary key,
+nombremodalid varchar(20)
+)
+
+;
+
+create table if not exists turno
+(
+idturno int auto_increment primary key,
+nomturno varchar(20)
+)
+;
+
+create table if not exists grado
+(
+idgrado int auto_increment primary key,
+nombrgrado varchar(20),
+seccion varchar(3)
+)
+;
