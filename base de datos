@@ -1,5 +1,4 @@
-create database sendero_de_luz
-
+create database if not exists sendero_de_luz;
 use sendero_de_luz;
 
 create table if not exists UserType(
@@ -45,11 +44,42 @@ on update cascade
 ENGINE = InnoDB
 default character set = utf8mb4
 collate = utf8mb4_unicode_ci;
+
+-----------------------------
+-----------------------------
+
+create table if not exists turno
+(
+idturno int auto_increment primary key,
+nomturno varchar(20)
+)
+engine = InnoDB;
+
+create table if not exists modalidad
+(
+idmodalidad int auto_increment primary key,
+nombremodalidad varchar(20),
+idturno int,
+constraint idturno foreign key (idturno) references turno(idturno)
+)
+
+engine = InnoDB ;
+
+create table if not exists grado
+(
+idgrado int auto_increment primary key,
+nombrgrado varchar(20),
+seccion varchar(3),
+idmodalidad int,
+constraint idmodalidad foreign key (idmodalidad) references modalidad(idmodalidad)
+
+)
+engine = InnoDB;
 ---------------------------------------
 ---------------------------------------
 create table if not exists estudiante
 (
-id int not null auto_increment primary key,
+idestudiante int not null auto_increment primary key,
 primernombre varchar(20),
 segundonombre varchar(20),
 primerapellido varchar(20),
@@ -61,11 +91,17 @@ fecNac datetime,
 codigoEst varchar(15),
 tutor varchar(20),
 dirreccion varchar(102),
+modalidad int,
+turno int,
+grado int,
 created_at timestamp null default null,
 updated_at timestamp null default null,
-deleted_at timestamp null default null
+deleted_at timestamp null default null,
+constraint modalidad foreign key (modalidad) references modalidad(idmodalidad),
+constraint turno foreign key (turno) references turno(idturno),
+constraint grado foreign key (grado) references grado(idgrado)
 ) 
-engine = Innebd;
+engine = InnoDB;
 ---------------------------------------
 --------------------------------------
 create table if not exists tutor
@@ -89,33 +125,17 @@ telefono1t varchar(9),
 telefono2t varchar(9),
 lugartrabajot varchar(102),
 ocupaciont varchar(50),
+codigoEst int,
 
-constraint nombretutor
-foreign key (codigoEst)
-references estudiante(codigoEst) 
+constraint codigoEst foreign key (codigoEst) references estudiante(idestudiante) 
 )
 engine = InnoDB;
------------------------------
------------------------------
-create table if not exists modalidad
-(
-idmodalidad int auto_increment primary key,
-nombremodalid varchar(20)
-)
+-- drop database sendero_de_luz;
 
-;
-
-create table if not exists turno
+create table if not exists salud
 (
-idturno int auto_increment primary key,
-nomturno varchar(20)
-)
-;
+idsalud int auto_increment primary key,
+padecimiento varchar(20)
 
-create table if not exists grado
-(
-idgrado int auto_increment primary key,
-nombrgrado varchar(20),
-seccion varchar(3)
 )
-;
+engine = InnoDB;
