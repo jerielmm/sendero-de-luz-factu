@@ -136,6 +136,35 @@ create table if not exists salud
 (
 idsalud int auto_increment primary key,
 padecimiento varchar(20)
-
 )
 engine = InnoDB;
+------------------------------------
+-------------------------------------
+/*----insert turno-----*/
+
+insert into sendero_de_luz.turno(nomturno) value ("Matutino");
+insert into sendero_de_luz.turno(nomturno) value ("Vespertino");
+------
+-----
+/*---inserta Modalidad----*/
+insert into sendero_de_luz.modalidad(nombremodalidad, idturno) value ("Educacion Inicial",1 );
+insert into sendero_de_luz.modalidad(nombremodalidad, idturno) value ("Primaria Regular", 1);
+insert into sendero_de_luz.modalidad(nombremodalidad, idturno) value ("Secundaria Regular",1);
+
+/*------ insert grado preescolar ------*/
+insert into sendero_de_luz.grado (nombrgrado, seccion, idmodalidad) value ("I nivel","A",1);
+insert into sendero_de_luz.grado (nombrgrado, seccion, idmodalidad) value ("II nivel", "A",1);
+Insert into sendero_de_luz.grado (nombrgrado, seccion, idmodalidad) value ("III nivel","A",1);
+/*----insert grado primaria regular ---*/
+insert into sendero_de_luz.grado (nombrgrado, seccion, idmodalidad) value ("Primero","A",2);
+insert into sendero_de_luz.grado (nombrgrado, seccion, idmodalidad) value ("Segundo","A",2);
+insert into sendero_de_luz.grado (nombrgrado, seccion, idmodalidad) value ("Tercero","A",2);
+insert into sendero_de_luz.grado (nombrgrado, seccion, idmodalidad) value ("Cuarto","A",2);
+insert into sendero_de_luz.grado (nombrgrado, seccion, idmodalidad) value ("Quinto","A",2);
+insert into sendero_de_luz.grado (nombrgrado, seccion, idmodalidad) value ("Sexto","A",2);
+/*-----insert grado secundaria regular --*/
+insert into sendero_de_luz.grado (nombrgrado, seccion, idmodalidad) value ("Septimo","A",3);
+insert into sendero_de_luz.grado (nombrgrado, seccion, idmodalidad) value ("Octavo","A",3);
+insert into sendero_de_luz.grado (nombrgrado, seccion, idmodalidad) value ("Noveno","A",3);
+insert into sendero_de_luz.grado (nombrgrado, seccion, idmodalidad) value ("Decimo","A",3);
+insert into sendero_de_luz.grado (nombrgrado, seccion, idmodalidad) value ("Undecimo","A",3);
